@@ -6,6 +6,9 @@ WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Galexy Fighters")
 
 WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+
+BORDER = pygame.Rect(WIDTH/2 - 5, 0, 10, HEIGHT)
 
 FPS = 60
 VELO = 5
@@ -19,28 +22,29 @@ RED_SPACESHIP = pygame.transform.rotate(pygame.transform.scale(RED_SPACESHIP_IMA
 
 def draw_window(red, yellow):
     WIN.fill(WHITE)
+    pygame.draw.rect(WIN, BLACK, BORDER)
     WIN.blit(YELLOW_SPACESHIP, (yellow.x, yellow.y))
     WIN.blit(RED_SPACESHIP, (red.x, red.y))
     pygame.display.update()
 
 def yellow_handle_movement(keys_pressed, yellow):
-    if keys_pressed[pygame.K_a]:       # Yellow Left 
+    if keys_pressed[pygame.K_a] and yellow.x - VELO >= 0:       # Yellow Left 
         yellow.x -= VELO
-    if keys_pressed[pygame.K_d]:       # Yellow Right
+    if keys_pressed[pygame.K_d] and yellow.x + VELO + yellow.width <= BORDER.x:       # Yellow Right
         yellow.x += VELO
-    if keys_pressed[pygame.K_w]:       # Yellow Top
+    if keys_pressed[pygame.K_w] and yellow.y - VELO >= 0:       # Yellow Top
         yellow.y -= VELO
-    if keys_pressed[pygame.K_s]:       # Yellow Bottom
+    if keys_pressed[pygame.K_s] and yellow.y + VELO + yellow.height <= HEIGHT - 15:       # Yellow Bottom
         yellow.y += VELO  
 
 def red_handle_movement(keys_pressed, red):
-    if keys_pressed[pygame.K_LEFT]:       # Red Left 
+    if keys_pressed[pygame.K_LEFT] and red.x - VELO >= BORDER.x + BORDER.width:       # Red Left 
         red.x -= VELO
-    if keys_pressed[pygame.K_RIGHT]:       # Red Right
+    if keys_pressed[pygame.K_RIGHT] and red.x + VELO + red.width <= WIDTH + 15:       # Red Right
         red.x += VELO
-    if keys_pressed[pygame.K_UP]:       # Red Top
+    if keys_pressed[pygame.K_UP] and red.y - VELO >= 0:       # Red Top
         red.y -= VELO
-    if keys_pressed[pygame.K_DOWN]:       # Red Bottom
+    if keys_pressed[pygame.K_DOWN] and red.y + VELO + red.height <= HEIGHT - 15:       # Red Bottom
         red.y += VELO  
 
 def main():
