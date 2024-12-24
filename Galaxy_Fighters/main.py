@@ -23,7 +23,7 @@ BORDER = pygame.Rect(WIDTH / 2 - 5, 0, 10, HEIGHT)
 FPS = 60  # Frames per second
 VELO = 5  # Velocity of spaceship movement
 BULLET_VELO = 7  # Velocity of bullets
-MAX_BUL = 10  # Maximum bullets allowed on screen
+MAX_BUL = 11111  # Maximum bullets allowed on screen
 SPACESHIP_WIDTH = 55  # Width of each spaceship
 SPACESHIP_HEIGHT = 40  # Height of each spaceship
 
